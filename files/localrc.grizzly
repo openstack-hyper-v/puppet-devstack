@@ -1,0 +1,8 @@
+ADMIN_PASSWORD=0p3nStack
+MYSQL_PASSWORD=0p3nStack
+RABBIT_PASSWORD=0p3nStack
+SERVICE_PASSWORD=$ADMIN_PASSWORD
+HOST_IP=$ipaddress
+KEYSTONE_CATALOG_BACKEND=sql
+MULTI_HOST=true
+disable_service c-api c-sch c-vol cinder n-vol

@@ -1,0 +1,13 @@
+auto lo
+iface lo inet loopback
+
+#
+auto eth0
+iface eth0 inet static
+        address <%= @devstack_controller_ip%>
+	netmask <%= @devstack_controller_netmask%>
+        gateway <%= @devstack_controller_gateway%>
+        dns-domain openstack.tld
+        dns-search openstack.tld
+        dns-nameservers 10.21.7.1 4.2.2.1 4.2.2.2
+

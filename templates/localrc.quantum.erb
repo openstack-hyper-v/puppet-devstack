@@ -1,0 +1,21 @@
+# quantum controller
+HOST_IP=<%= @quantum_ip %>
+ENABLED_SERVICES=quantum,q-agt,q-dhcp,q-l3,q-meta
+SERVICE_HOST=<%= @devstack_controller_ip %>
+MYSQL_HOST=$SERVICE_HOST
+MYSQL_USER=root
+MYSQL_PASSWORD=<%= @admin_passwd%>
+RABBIT_HOST=$SERVICE_HOST
+GLANCE_HOSTPORT=$SERVICE_HOST:9292
+
+OVS_BRIDGE_MAPPING=psynet1:eth1
+PUBLIC_INTERFACE_DEFAULT=eth0
+GUEST_INTERFACE_DEFAULT=eth1
+
+OVS_ENABLE_TUNNELING=False
+
+RABBIT_PASSWORD=<%= @admin_passwd %>
+SERVICE_TOKEN=admin
+SERVICE_PASSWORD=<%= @admin_passwd %>
+ADMIN_PASSWORD=<%= @admin_passwd %>
+SCREEN_LOGDIR=$DEST/logs/screen

@@ -1,0 +1,15 @@
+MULTI_HOST=True
+disable_service n-net
+disable_service n-cpu
+enable_service q-svc
+enable_service quantum
+ENABLE_TENANT_VLANS=True
+TENANT_VLAN_RANGE=2000:3000
+PHYSICAL_NETWORK=physnet1
+OVS_ENABLE_TUNNELING=False
+DATABASE_PASSWORD=<%= @admin_passwd %>
+RABBIT_PASSWORD=<%= @admin_passwd %>
+SERVICE_TOKEN=<%= @admin_passwd %>
+SERVICE_PASSWORD=<%= @admin_passwd %>
+ADMIN_PASSWORD=<%= @admin_passwd %>
+SCREEN_LOGDIR=$DEST/logs/screen

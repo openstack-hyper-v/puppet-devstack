@@ -1,0 +1,26 @@
+auto lo
+iface lo inet loopback
+
+#
+auto eth0
+iface eth0 inet static
+        address <%= @quantum_ip%>
+	netmask <%= @quantum_netmask%>
+        gateway <%= @quantum_gateway%>
+        dns-domain openstack.tld
+        dns-search openstack.tld
+        dns-nameservers 10.21.7.1 4.2.2.1 4.2.2.2
+
+	
+auto eth1
+iface eth1 inet manual
+up ifconfig $IFACE 0.0.0.0 up
+up ip link set $IFACE promisc on
+down ip link set $IFACE promisc off
+down ifconfig $IFACE down
+
+#auto eth2
+#iface eth2 inet static
+#address 10.27.1.54
+#netmask 255.255.255.0
+#gateway 10.27.1.254
