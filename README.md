@@ -1,4 +1,4 @@
 puppet-devstack
 ===============
 
-A puppet rapper for Devstack
+A puppet wrapper for Devstack
