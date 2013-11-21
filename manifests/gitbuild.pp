@@ -3,12 +3,18 @@ define devstack::gitbuild(
   $stackroot=$devstack::stackroot
 ){
 
+
+   vcsrepo{"${stackroot}/${name}":
+     provider => 'git',
+     source   => "$githome}/${name}.git",
+   }
    exec { "get-${name}":
         cwd => "${stackroot}",
         creates => "${stackroot}/${name}/.git",
         command => "/usr/bin/git clone ${githome}/${name}.git",
         #before => Exec["update-${name}"],
-        timeout => 0,
+        refreshonly => true,
+        timeout     => 0,
    }
 
    exec { "update-${name}":

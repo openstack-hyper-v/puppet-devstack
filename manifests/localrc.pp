@@ -11,5 +11,11 @@ class devstack::localrc {
     content => template("devstack/localrc.quantum.erb"),
     require => Gitbuild["devstack"], 
   }
+    file {"localrc-ironic":
+    ensure  => file,
+    path    => "${devstack::stackroot}/devstack/localrc-ironic",
+    content => template("devstack/localrc.ironic.erb"),
+    require => Gitbuild["devstack"], 
+  }
 }
 
