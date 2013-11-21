@@ -18,6 +18,18 @@ class devstack(
   $quantum_netmask = $devstack_controller_netmask
   $quantum_gateway = $devstack_controller_gateway
 
+user { 'stack':
+  ensure           => 'present',
+  gid              => '1001',
+  home             => '/opt/stack',
+  password         => '!',
+  password_max_age => '99999',
+  password_min_age => '0',
+  shell            => '/bin/bash',
+  uid              => '1001',
+}
+
+
 class {prereqs: }
 class {commands: }
 
