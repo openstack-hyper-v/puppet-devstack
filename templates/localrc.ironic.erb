@@ -1,0 +1,19 @@
+ # Enable Ironic API and Ironic Conductor
+ enable_service ir-api
+ enable_service ir-cond
+ 
+ # Enable Neutron which is required by Ironic and disable nova-network.
+ disable_service n-net
+ enable_service q-svc
+ enable_service q-agt
+ enable_service q-dhcp
+ enable_service q-l3
+ enable_service q-meta
+ enable_service neutron
+ 
+ # You can replace "password" with your own one.
+RABBIT_PASSWORD=<%= @admin_passwd %>
+SERVICE_TOKEN=<%= @admin_passwd %>
+SERVICE_PASSWORD=<%= @admin_passwd %>
+ADMIN_PASSWORD=<%= @admin_passwd %>
+SCREEN_LOGDIR=$DEST/logs/screen
