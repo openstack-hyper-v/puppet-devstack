@@ -5,15 +5,17 @@ define devstack::gitbuild(
 
 
    vcsrepo{"${stackroot}/${name}":
+     ensure   => present,
      provider => 'git',
-     source   => "$githome}/${name}.git",
+     source   => "${githome}/${name}.git",
    }
    exec { "get-${name}":
         cwd => "${stackroot}",
         creates => "${stackroot}/${name}/.git",
         command => "/usr/bin/git clone ${githome}/${name}.git",
         #before => Exec["update-${name}"],
-        refreshonly => true,
+        require     => Vcsrepo["${stackroot}/${name}"],
+	refreshonly => true,
         timeout     => 0,
    }
 

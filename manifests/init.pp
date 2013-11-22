@@ -20,13 +20,13 @@ class devstack(
 
 user { 'stack':
   ensure           => 'present',
-  gid              => '1001',
+  #gid              => '1001',
   home             => "${stackdest}",
   password         => '!',
   password_max_age => '99999',
   password_min_age => '0',
   shell            => '/bin/bash',
-  uid              => '1001',
+  #uid              => '1001',
 }
 
 
