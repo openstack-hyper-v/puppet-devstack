@@ -1,4 +1,6 @@
-class devstack::commands {
+class devstack::commands (
+   $stacksrc = $devstack::stacksrc,
+){
   exec {"stack.sh":
         command     => "${stacksrc}/stack.sh",
         creates     => $stackdest,
@@ -7,6 +9,4 @@ class devstack::commands {
         timeout     => 0,
         refreshonly => true,
   }
-
-
 }
