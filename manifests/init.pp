@@ -19,20 +19,35 @@ class devstack(
   $quantum_gateway = $devstack_controller_gateway
 
 group {'stack':
-  gid	=> '1001',
+  ensure => present,
 }
 
 user { 'stack':
   ensure           => 'present',
-  gid              => '1001',
+  gid              => 'stack',
   home             => "${stackdest}",
   password         => '!',
   password_max_age => '99999',
   password_min_age => '0',
   shell            => '/bin/bash',
-  uid              => '1001',
 }
 
+file { "/etc/sudoers":
+      owner   => "root",
+      group   => "root",
+      mode    => "440",
+}
+
+augeas { "addstacktosudoers":
+  context => "/files/etc/sudoers",
+  changes => [
+    "set spec[user = 'stack']/user stack",
+    "set spec[user = 'stack']/host_group/host ALL",
+    "set spec[user = 'stack']/host_group/command ALL",
+    "set spec[user = 'stack']/host_group/command/runas_user ALL",
+    "set spec[user = 'stack']/host_group/command/tag NOPASSWD",
+  ],
+}
 
 class {prereqs: }
 class {commands: }
